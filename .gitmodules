@@ -1,0 +1,15 @@
+[submodule "AutoMergeHotfixCascada"]
+	path = AutoMergeHotfixCascada
+	url = https://github.com/VanOps/AutoMergeHotfixCascada
+[submodule "AutoMergeFeature"]
+	path = AutoMergeFeature
+	url = https://github.com/VanOps/AutoMergeFeature
+[submodule "AutoMergeReleaseMultiEntorno"]
+	path = AutoMergeReleaseMultiEntorno
+	url = git@github.com:VanOps/AutoMergeReleaseMultiEntorno.git
+[submodule "AutoMergeDependabot"]
+	path = AutoMergeDependabot
+	url = git@github.com:VanOps/AutoMergeDependabot.git
+[submodule "AutoMergeTrunkBasedShortLivedBranches"]
+	path = AutoMergeTrunkBasedShortLivedBranches
+	url = git@github.com:VanOps/AutoMergeTrunkBasedShortLivedBranches.git
