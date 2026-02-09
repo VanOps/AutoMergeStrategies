@@ -17,17 +17,19 @@ El objetivo de este repositorio es proporcionar implementaciones reales y docume
 Cada estrategia está implementada como un **submódulo independiente** con sus propios workflows de GitHub Actions:
 
 ```
-├── AutoMergeDependabot/          # Automerge de dependencias
-├── AutoMergeFeature/             # Automerge de features
-├── AutoMergeHotfixCascada/       # Automerge con cascada de hotfixes
-├── AutoMergeReleaseMultiEntorno/ # Automerge para releases multi-entorno
-├── AutoMergeTrunkBasedShortLivedBranches/ # Trunk-based development
-└── docs/                         # Documentación detallada
+├── AutoMergeDependabot/                     # Automerge de dependencias
+├── AutoMergeFeature/                        # Automerge de features (simplificado)
+├── AutoMergeFeatureManaged/                 # Automerge de features (gestionado/completo)
+├── AutoMergeHotfixCascada/                  # Automerge con cascada de hotfixes
+├── AutoMergeReleaseMultiEntorno/            # Automerge para releases multi-entorno
+├── AutoMergeTrunkBasedShortLivedBranches/   # Trunk-based development
+└── docs/                                    # Documentación detallada
 ```
 
 ## 📚 Documentación por Estrategia
 
 Cada estrategia cuenta con documentación completa que incluye:
+
 - Descripción del flujo de trabajo
 - Scripts de GitHub Actions
 - Configuración paso a paso
@@ -38,8 +40,21 @@ Cada estrategia cuenta con documentación completa que incluye:
 1. **[Automerge de Dependabot](docs/DependabotAutomerge.md)**  
    Automatiza la integración de actualizaciones de dependencias generadas por Dependabot.
 
-2. **[Automerge de Features](docs/FeatureAutoMerge.md)**  
-   Integración automática de ramas de características al completar revisiones y pruebas.
+2. **Automerge de Features** - Dos variantes según complejidad:
+   - **[Feature AutoMerge Simplificado](docs/FeatureAutoMerge.md)** | [Implementación](AutoMergeFeature/)  
+     ✨ **Recomendado para equipos pequeños/medianos**  
+     Usa auto-merge **nativo de GitHub** sin workflows adicionales. Simple, eficiente y fácil de mantener.
+     - ✅ Solo 1 workflow (CI)
+     - ✅ Activación manual con `gh pr merge --auto`
+     - ✅ Configuración mínima
+     - ✅ Basado en Branch Protection Rules
+   - **[Feature AutoMerge Managed](docs/FeatureAutoMergeManaged.md)** | [Implementación](AutoMergeFeatureManaged/)  
+     🔧 **Recomendado para equipos grandes**  
+     Automatización total con workflows custom, auto-labeling y merge automático.
+     - ✅ 3 workflows (CI + Auto-label + Auto-merge)
+     - ✅ Activación automática con label `ready-to-merge`
+     - ✅ Auto-labeling por tamaño y tipo de cambio
+     - ✅ Condiciones de merge personalizables
 
 3. **[Automerge de Hotfix con Cascada](docs/HotfixCascada.md)**  
    Propagación automática de correcciones críticas a través de múltiples ramas (develop → staging → main).
@@ -70,6 +85,7 @@ git submodule update --init --recursive
 ### Explorar una Estrategia
 
 Cada submódulo contiene:
+
 - `.github/workflows/`: Scripts de GitHub Actions
 - Configuración específica de la estrategia
 - README con instrucciones de implementación
@@ -88,6 +104,7 @@ Cada submódulo contiene:
 ### ¿Qué es AutoMerge?
 
 AutoMerge es la capacidad de fusionar automáticamente pull requests cuando se cumplen ciertas condiciones predefinidas, como:
+
 - ✅ Todas las revisiones aprobadas
 - ✅ Checks de CI/CD exitosos
 - ✅ Ausencia de conflictos
@@ -110,6 +127,7 @@ AutoMerge es la capacidad de fusionar automáticamente pull requests cuando se c
 ## 🤝 Contribuciones
 
 Las contribuciones son bienvenidas. Por favor:
+
 1. Fork el repositorio
 2. Crea una rama para tu feature
 3. Realiza tus cambios
